@@ -1,0 +1,256 @@
+body{
+  margin: 0;
+  padding: 0; /*set like this so that the default setting of brower is off*/
+  box-sizing: border-box;
+  background-color: #e6eBed ;
+  color: #666666;
+  font-family: Cedarville+Cursive;
+
+}
+
+.material-icons-outlined{
+    vertical-align: middle;
+    line-height:1px;
+}
+
+.text-primary{
+    color: #666666;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr 1fr ; /*layout. 4 columns*/
+    grid-template-rows:0.2fr 3fr; /*header will be 0.2fr units*/
+    grid-template-areas: "sidebar header header header"
+    "sidebar main main main";
+    height: 100vh; /*100vh is 100% the available height for the devizible area*/
+
+}
+
+
+/*HEADER*/
+.header{
+    grid-area: header ;
+    height: 70px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /*this will allow us to space items some left some right*/
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -4px rgba(0,0,0,0.2);
+}
+
+.menu-icon{
+    display: none;
+}
+
+/*SIDEBAR*/
+#sideBar{
+    grid-area: sidebar;
+    height: 100%;
+    background-color: #171515 ;
+    color:grey ;
+    overflow-y: auto ; /*this allows users to determine which behaviour to use although scroll is automatic*/
+    transition:all 0.5s ; /*for effect for responsiveness so sidebar moves within.5s*/
+    -webkit-transition: all 0.5s;
+}
+
+.sideBar-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px  30px  30px  30px;
+    margin-bottom: 30px;
+}
+
+.sideBar-title > span {
+    display: none;
+}
+
+.sideBar-brand{
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    
+}
+
+.sideBar-list{
+    padding: 30px;
+    margin-top: 15px;
+    list-style-type: none;/*menu not to be displayed in bullet form*/
+} 
+
+.sideBar-list-item{
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sideBar-list-item:hover {
+    background-color: rgb(228, 185, 228);
+    cursor: pointer;
+}
+
+.sideBar-responsive{
+    display: inline !important; /*for smaller screens*/
+    position: absolute;
+}
+
+/*MAIN-CONTAINER*/
+.main-container{
+    grid-area: main;
+    overflow-y: auto;
+    padding:20px 20px ; /*top and bottom, left and right*/
+}
+
+.main-title{
+    display: flex;
+    justify-content: space-between;
+     
+}
+
+.main-title > p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.main-cards{ /*gets them in a grid form*/
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr 1fr ; /*this means 4 columns each will take 20% space*/
+    gap: 20px;
+    margin: 20px 0; /*top&bottom left&right*/
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 25px;
+    background-color: white;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+.text-blue {
+    color: blue;
+}
+
+.text-orange {
+    color: orange;
+}
+
+.text-green {
+    color: green;
+}
+
+.text-red{
+    color: #ff0000;
+}
+
+.card:first-child{ /*use this cause there are 4 cards*/
+    border-left: 7px solid blue;
+}
+
+.card:nth-child(2){
+    border-left: 7px solid orange;
+}
+
+.card:nth-child(3){
+    border-left: 7px solid green;
+}
+
+.card:nth-child(4){
+    border-left: 7px solid red;
+}
+
+.card > span {
+    font-size:20px ;
+    font-weight:600 ;
+}
+
+.card-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-inner > p {
+    font-size: 18px;
+}
+
+.card-inner > span {
+    font-size: 35px;
+}
+
+.charts{
+    display: grid;
+    grid-template-columns:1fr 1fr ; /*2 columns*/
+    gap: 20px;
+}
+
+.charts-card{
+    background-color: aliceblue;
+    margin-bottom: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow:0 6px 7px -4px rgba(0,0,0,0.2) ;
+}
+
+.chart-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/*media queries and content decision*/
+
+/*for large screens */
+@media screen and (max-width:992px) { /*decided to show 4 summary cards and charts sidexside show menu in header so user can click on it and open to sideBar*/
+    .grid-container{
+        grid-template-columns:1fr;
+        grid-template-rows: 0.2fr 3fr; /*header will be .2 the rows 3*/
+        grid-template-areas: 
+        'header'
+        'main';
+
+    }
+
+    #sideBar{
+       display: none; 
+    }
+    .menu-icon{
+        display: inline ;
+    }
+
+    .sideBar-title{
+        display: inline;
+    }
+}
+
+/*medium*/
+@media screen and (max-width: 768px){
+    .main-cards{ 
+        grid-template-columns: 1fr; /*everything will be one to 1fr fit in the scree*/
+        gap: 10px;
+        margin-bottom: 0;
+    }
+
+    .charts{
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .header-left{
+        display: none;
+    }
+}
